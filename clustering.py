@@ -14,6 +14,12 @@ USERINFO_PATH = 'userinfo_labeled.json'
 with open(USERINFO_PATH, 'rb') as jsonfile:
     userinfo = json.load(jsonfile)
 
+# looking at values in single "column"
+profile_pics = [account['profile_pic'] for account in userinfo if 'profile_pic' in account.keys()]
+print(profile_pics[:5])         # see first 5 entries
+profile_pic_counts = Counter(profile_pics)
+high_counts = [url for url, count in profile_pic_counts.items() if count > 1]
+    
 # no followers, no followed: follow:followed ratio
 # follow few accounts but repost everyday
 # no profile picture
